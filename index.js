@@ -1,13 +1,16 @@
+//keyboard press
 document.addEventListener("keypress", function (event){
   makesound(event.key);
+  keypressanimation(event.key);
 });
- 
+ //btn presss
 let drumnum = document.getElementsByClassName("drum").length; //use for finding how many drums are of class drum for use in for  loop
 
 for (let i = 0; i <= drumnum; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     let buttoninnerhtml = this.innerHTML;
-    makesound(buttoninnerhtml)
+    makesound(buttoninnerhtml);
+    keypressanimation(buttoninnerhtml);
     
   });
   
@@ -43,4 +46,11 @@ function makesound(key){
       laudio.play();
       break;
   }
+}
+function keypressanimation(currentkey) {
+  let activebtn=document.querySelector("."+currentkey);
+  activebtn.classList.add("pressed");
+  setTimeout(function() {
+    activebtn.classList.remove("pressed");
+  },100);
 }
